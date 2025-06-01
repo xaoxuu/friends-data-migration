@@ -21,14 +21,15 @@ async function processIssue(issue) {
 
     logger('info', `Found JSON content in issue #${issue.number}`);
     const jsonData = JSON.parse(jsonMatch[0]);
+    logger('info', `Got JSON content in issue #${issue.number}`, jsonData);
     // 转换旧格式到新格式
     if (jsonData.avatar) {
       jsonData.icon = jsonData.avatar;
       delete jsonData.avatar;
     }
     jsonData.feed = jsonData.feed ? jsonData.feed : ''; // 添加 feed 字段，如果不存在则为空字符串
-    
-    const newBody = issue.body.replace(jsonMatch[0], '```json\n' + JSON.stringify(jsonData, null, 2) + '\n```');
+    logger('info', `Converted JSON content in issue #${issue.number}`, jsonData);
+    const newBody = issue.body.replace(jsonMatch[0], JSON.stringify(jsonData, null, 2));
     return { data: jsonData, newBody: newBody };
   } catch (error) {
     handleError(error, `Error processing issue #${issue.number}`);
