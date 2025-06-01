@@ -3,6 +3,10 @@ description: 'Generate JSON from GitHub issues'
 author: 'xaoxuu'
 
 inputs:
+  github_token:
+    description: 'GitHub token'
+    required: false
+    default: ${{ GITHUB_TOKEN }}
 
 runs:
   using: 'node20'
