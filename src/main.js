@@ -37,7 +37,7 @@ async function processIssue(issue) {
 }
 
 async function parseIssues() {
-  const token = process.env.GITHUB_TOKEN;
+  const token =  process.env.GITHUB_TOKEN;
   const owner = github.context.repo.owner;
   const repo = github.context.repo.repo;
   const { Octokit } = await import('@octokit/rest');
