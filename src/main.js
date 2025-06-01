@@ -31,6 +31,12 @@ async function processIssue(issue) {
       delete jsonData.avatar;
     }
 
+    // screenshot -> snapshot
+    jsonData.snapshot = jsonData.screenshot || '';
+    if ('screenshot' in jsonData) {
+      delete jsonData.screenshot;
+    }
+
     // add feed
     jsonData.feed = jsonData.feed ? jsonData.feed : ''; // 添加 feed 字段，如果不存在则为空字符串
 
