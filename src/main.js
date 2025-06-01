@@ -38,7 +38,7 @@ async function processIssue(issue) {
     }
 
     // add feed
-    jsonData.feed = jsonData.feed ? jsonData.feed : ''; // 添加 feed 字段，如果不存在则为空字符串
+    jsonData.feed = jsonData.feed || ''; // 添加 feed 字段，如果不存在则为空字符串
 
     logger('info', `Converted JSON content in issue #${issue.number}`, jsonData);
     const newBody = issue.body.replace(jsonMatch[0], JSON.stringify(jsonData, null, 2));
