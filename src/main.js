@@ -26,7 +26,7 @@ async function processIssue(issue) {
     // 转换旧格式到新格式
 
     // avatar -> icon
-    jsonData.icon = jsonData.avatar || '';
+    jsonData.icon = jsonData.avatar || jsonData.icon || '';
     if ('avatar' in jsonData) {
       delete jsonData.avatar;
     }
